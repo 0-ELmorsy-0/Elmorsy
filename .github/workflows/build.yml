@@ -24,29 +24,27 @@ jobs:
     - name: Build Backend
       run: |
         cd backend
-        chmod +x gradlew
-        ./gradlew build -x test
+        gradle build -x test --no-daemon
 
     - name: Run Backend Tests
       run: |
         cd backend
-        ./gradlew test
+        gradle test --no-daemon
 
     - name: Build Android App
       run: |
         cd android-app
-        chmod +x gradlew
-        ./gradlew build -x test
+        gradle build -x test --no-daemon
 
     - name: Run Android Tests
       run: |
         cd android-app
-        ./gradlew test
+        gradle test --no-daemon
 
     - name: Build APK
       run: |
         cd android-app
-        ./gradlew assembleDebug
+        gradle assembleDebug --no-daemon
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -73,20 +71,3 @@ jobs:
           backend/build/reports/
           android-app/build/reports/
         retention-days: 30
-
-    - name: Create Release
-      if: success()
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v1.0.0-build-${{ github.run_number }}
-        release_name: Release v1.0.0 Build ${{ github.run_number }}
-        body: |
-          ## Nursing Admin Dashboard Build
-          - Backend: Spring Boot + Kotlin
-          - Android: Jetpack Compose
-          - Build Number: ${{ github.run_number }}
-          - Commit: ${{ github.sha }}
-        draft: false
-        prerelease: false
