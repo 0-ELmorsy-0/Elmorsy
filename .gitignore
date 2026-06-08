@@ -1,0 +1,45 @@
+# Gradle
+.gradle/
+build/
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Android
+.android/
+local.properties
+*.apk
+*.aab
+
+# Kotlin
+*.kt.bak
+*.kexe
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Node (if using npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
